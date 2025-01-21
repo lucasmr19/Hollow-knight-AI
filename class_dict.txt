@@ -1,0 +1,10 @@
+Health Bar: 0
+Mana: 1
+HK: 2
+Enemy: 3
+Collectible Item: 4
+Bench: 5
+Upgrade Item: 6
+Key Item: 7
+Exit: 8
+NPC: 9
