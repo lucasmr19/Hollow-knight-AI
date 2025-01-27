@@ -34,12 +34,14 @@ This project involves:
 To train the YOLO object detection model, we first need a labeled dataset of Hollow Knight gameplay frames.
 
 ### Step 1: Collecting Game Images
-- Game footage was recorded using screen captures of a YouTube gameplay. Video: https://www.youtube.com/watch?v=G1atkq4C1KU&t=1415s
+- Game footage was recorded using screen captures of various YouTube gameplays. Videos:
+- https://youtu.be/G1atkq4C1KU?si=36akJVMqBsENK3Sh
+- https://youtu.be/76wIRNsDPPw?si=GhMVsLaXxwtplt_K
 - Frames were extracted from the gameplay videos at regular intervals using `screenshots.py`.  
 - A variety of situations were captured, including combat, exploration, NPCs, to ensure model robustness. Is not definitive
 
 ### Step 2: Labeling the Dataset
-- **Roboflow** were used to annotate the frames. See the dataset in roboflow universe: https://universe.roboflow.com/hollow-knight-dataset/hollow-knight 
+- **Roboflow** were used to annotate the frames. See the dataset in roboflow universe: [https://universe.roboflow.com/hollow-knight-dataset/hollow-knight ](https://universe.roboflow.com/hollow-knight-dataset/hollow-knight/dataset/3)
 - Objects of interest include:
   - **Health bar**: Indicates the player's remaining health.
   - **Mana**: Shows the player's available energy for abilities.
@@ -87,14 +89,26 @@ To train an AI to play the game, an **OpenAI Gym-like environment** was implemen
   
 - **Action Space**:  
   A multi-binary action space that represents possible keyboard inputs:
-  - Movement: `W`, `A`, `S`, `D`
-  - Abilities: `Space`, `J`, `K`, etc.
+  KEY_MAP = {
+    'w': 0, # up
+    's': 1, # down
+    'a': 2, #left
+    'd': 3, # right
+    'space': 4, #jump
+    'j': 5, #attack
+    'k': 6, #dash
+    'e': 7, #super_dash
+    'r': 8, #dream_nail
+    'f': 9, #quick_cast
+    'q': 10 #focus(mantain)/cast
+}
 
 - **Rewards System**:  
-  The agent is rewarded or penalized based on game outcomes:
+  The agent is rewarded or penalized based on multiple game outcomes:
   - Gaining health/mana: Positive reward.
   - Taking damage or dying: Negative reward.
   - Defeating enemies or completing objectives: Positive reward.
+  - ...
 
 ### Reinforcement Learning Algorithm
 - Algorithms like **Proximal Policy Optimization (PPO)** or **Deep Q-Learning (DQN)** were used for training.  
@@ -110,7 +124,7 @@ Follow these steps to set up and run the project:
 - Python 3.8+
 - Required libraries:  
   ```bash
-  pip install torch gym numpy opencv-python pyautogui yolov5
+  pip install torch gym numpy opencv-python pyautogui ultralytics
   ```
 - A GPU-enabled machine for model training and RL experiments.
 
@@ -118,7 +132,7 @@ Follow these steps to set up and run the project:
 1. **Train the YOLO Model**:  
    Use the labeled dataset to train the YOLO model or load the pre-trained weights provided in `best.pt`.  
    ```bash
-   python train.py --data data.yaml --weights yolov5s.pt --epochs 100
+   python train.py --data data.yaml --weights yolov8s.pt --epochs 100
    ```
 2. **Run the Environment**:  
    Launch the game and initialize the environment:
