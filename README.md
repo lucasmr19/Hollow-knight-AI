@@ -18,7 +18,7 @@ This project focuses on training an AI to play **Hollow Knight** using **Reinfor
 ## Project Overview
 
 The goal of this project is to train an AI agent that can play **Hollow Knight**, a popular Metroidvania game. To achieve this:
-1. A **YOLO-based object detection model** is trained to identify key elements from the game, such as health bars, mana, enemies, and interactable objects.
+1. A **YOLO-based object detection model** has been trained to identify key elements from the game, such as health bars, mana, enemies, ...
 2. These detections are used as observations for a **Reinforcement Learning (RL) agent** that interacts with the game environment to learn optimal strategies.
 
 This project involves:
@@ -34,12 +34,12 @@ This project involves:
 To train the YOLO object detection model, we first need a labeled dataset of Hollow Knight gameplay frames.
 
 ### Step 1: Collecting Game Images
-- Game footage was recorded using screen capture tools like OBS Studio.  
-- Frames were extracted from gameplay videos at regular intervals.  
-- A variety of situations were captured, including combat, exploration, and interaction with NPCs, to ensure model robustness.
+- Game footage was recorded using screen captures of a YouTube gameplay. Video: https://www.youtube.com/watch?v=G1atkq4C1KU&t=1415s
+- Frames were extracted from the gameplay videos at regular intervals using `screenshots.py`.  
+- A variety of situations were captured, including combat, exploration, NPCs, to ensure model robustness. Is not definitive
 
 ### Step 2: Labeling the Dataset
-- **LabelImg** or similar tools were used to annotate the frames.  
+- **Roboflow** were used to annotate the frames. See the dataset in roboflow universe: https://universe.roboflow.com/hollow-knight-dataset/hollow-knight 
 - Objects of interest include:
   - **Health bar**: Indicates the player's remaining health.
   - **Mana**: Shows the player's available energy for abilities.
@@ -57,7 +57,7 @@ To train the YOLO object detection model, we first need a labeled dataset of Hol
 A custom YOLO model was trained to detect the labeled objects in real-time.  
 
 ### Step 1: Setting Up the YOLO Model
-- The **YOLOv5/YOLOv8** framework was used for training due to its speed and accuracy.  
+- The **YOLOv8/YOLOv11** framework was used for training due to its speed and accuracy.  
 - Training was performed on a GPU-enabled machine for faster convergence.  
 
 ### Step 2: Training
